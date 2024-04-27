@@ -11,14 +11,13 @@ from PIL import ImageDraw
 
 X_SPACING = 4 
 Y_SPACING = 6
-font = ImageFont.truetype(r"C:\Users\Abhijit_asus\github_stuff\minuszero\Adishila\Adishila\Adishila.ttf", 16)
+font = ImageFont.truetype(r"/home/abhijitd/Downloads/Adishila/Adishila.ttf", 16)
 
 draw = ImageDraw.Draw(img)
 
 START_LOCATION = [10,20]
-fp = r"C:\Users\Abhijit_asus\github_stuff\minuszero\Raghuvamsa-with-commentary.txt"
-fp = r"C:\Users\Abhijit_asus\github_stuff\sanskrit_ocr\small_txt.txt"
-with open(fp, 'r', encoding="utf8   ") as f:
+fp = r"Raghuvamsa-with-commentary.txt"
+with open(fp, 'rb') as f:
     #for i in f.readline():
     #    print(i )
     #    break
@@ -34,12 +33,12 @@ from PIL import ImageFont
 from PIL import ImageDraw
 import numpy as np
 import pathlib 
-path = pathlib.Path(r"C:\Users\Abhijit_asus\github_stuff\minuszero\Adishila\Adishila")
+path = pathlib.Path(r"/home/abhijitd/Downloads/Adishila/")
 for font_dir in path.iterdir():
     img = Image.fromarray(np.ones((512,1024), dtype=np.uint8)*255)
 
     draw = ImageDraw.Draw(img)
-# font = ImageFont.truetype(<font-file>, <font-size>)
+# font = ImageFont.truetype(<font-file>,; <font-size>)
 
     font = ImageFont.truetype(font_dir, 32)
 
@@ -56,12 +55,3 @@ text=r"""
 
 """
 
-img = Image.fromarray(np.ones((512,1024), dtype=np.uint8)*255)
-
-draw = ImageDraw.Draw(img)
-# font = ImageFont.truetype(<font-file>, <font-size>)
-
-font = ImageFont.truetype(r"C:\Users\Abhijit_asus\github_stuff\sanskrit_ocr\Lohit-Devanagari.ttf", 16)
-
-draw.text((0, 0), text, color = 0,font=font)
-img.save(f'sample-out-LOHIT.jpg')

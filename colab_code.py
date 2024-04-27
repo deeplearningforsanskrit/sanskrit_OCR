@@ -12,9 +12,12 @@ swars = """
 ओ
 औ
 अं
-अः
-"""
+अः"""
 
+from PIL import Image
+from PIL import ImageFont
+from PIL import ImageDraw
+import numpy as np
 
 vyanjans = """क
 ख
@@ -50,8 +53,7 @@ vyanjans = """क
 स
 ह
 ळ
-क्ष
-ज्ञ"""
+ष"""
 
 
 
@@ -73,8 +75,7 @@ vowels = """ा
 ृ
 ॄ
 ँ
-ॅ
-"""
+ॅ"""
 
 """१
 २
@@ -102,37 +103,37 @@ chars = vyanjans.split("\n")
 vowels = vowels.split("\n")
 
 import random
-
-word = random.choice(swars)
-
-
-for i in range(1000):
-  word+= random.choice(chars) +  random.choice(vowels)
-
-  if i%12==0:
-    continue
-  elif i%4==0:
-    word+= udatt_anudatt[0]
-  elif i%3==0:
-    word+= udatt_anudatt[1]
-
-  if i%28==0:
-    word+=" \n"
+from tqdm import tqdm 
+for j in tqdm(range(200)):
+    word = random.choice(swars)
 
 
+    for i in range(5000):
+        word+= random.choice(chars) +  random.choice(vowels)
 
-word
+        if i%93==0:
+            word+=" \n"
 
-from PIL import Image
-from PIL import ImageFont
-from PIL import ImageDraw
-import numpy as np
-img = Image.fromarray(np.ones((1024, 1024), dtype=np.uint8)*255)
+        
+
+        if i%15==0:
+            word+= " "
+        elif i%5==0 and word[-1]!="\n":
+            word+= udatt_anudatt[0]
+        elif i%3==0 and word[-1] !='\n':
+            word+= udatt_anudatt[1]
+
+
+
+    img = Image.fromarray(np.ones((1024, 1024), dtype=np.uint8)*255)
 #
-draw = ImageDraw.Draw(img)
+    draw = ImageDraw.Draw(img)
 # font = ImageFont.truetype(<font-file>, <font-size>)
 
-font = ImageFont.truetype(r"C:\Users\Abhijit_asus\github_stuff\minuszero\Adishila\Adishila\Adishila.ttf", 16)
+    font = ImageFont.truetype(r"/home/abhijitd/Downloads/Adishila/Adishila.ttf", 16)
 
-draw.text((0, 0), word, color = 0,font=font)
-img.save('sample-out.jpg')
+    draw.text((0, 0), word, color = 0,font=font)
+    img.save(f'data/sample-out_{j}.jpg')
+
+    with open(f"data/sample_text_{j}.txt", "a+") as f:
+        f.write(word)
