@@ -128,7 +128,6 @@ for j in tqdm(range(200)):
     img = Image.fromarray(np.ones((1024, 1024), dtype=np.uint8)*255)
 #
     draw = ImageDraw.Draw(img)
-# font = ImageFont.truetype(<font-file>, <font-size>)
 
     font = ImageFont.truetype(r"/home/abhijitd/Downloads/Adishila/Adishila.ttf", 16)
 
