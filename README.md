@@ -14,7 +14,7 @@ Note: By default this model would be extensible to almost all languages which us
 
 To generate random data, run 
 
-```python
+```bash
 
 python src/data_generation.py
 
